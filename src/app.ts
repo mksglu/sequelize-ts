@@ -1,10 +1,6 @@
 import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
 import * as express from 'express'
-import * as dotenv from 'dotenv'
-
-dotenv.config()
-
 import { Routes } from './routes/'
 class App {
   public app: express.Application
