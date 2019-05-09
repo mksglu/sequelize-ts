@@ -1,5 +1,5 @@
 import {Request,Response, Router} from 'express'
-import userService from '../../services/users.service'
+import userService from '../../services/users/users.service'
 const router = Router();
 
 router.post('/create', async (req:Request, res:Response)=>{

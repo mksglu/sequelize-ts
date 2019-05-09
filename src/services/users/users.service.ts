@@ -1,5 +1,5 @@
-import { IUser } from '../interfaces/IUser'
-import db from '../models'
+import { IUser } from '../../interfaces/IUser'
+import db from '../../models'
 
 const createUser = async (req: IUser): Promise<any> => {
   try {
