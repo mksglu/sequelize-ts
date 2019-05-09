@@ -1,18 +1,16 @@
 import * as Sequelize from 'sequelize'
+import { IUser } from '../interfaces/IUser'
 import { SequelizeAttributes } from '../interfaces/ISequelizeAttributes'
-import { UserAttributes } from '../interfaces/IUser'
+type UserInstance = Sequelize.Instance<IUser> & IUser
 
-export const UserFactory = (
-  sequelize: Sequelize.Sequelize,
-  DataTypes: Sequelize.DataTypes
-): Sequelize.Model<{}, UserAttributes> => {
-  const attributes: SequelizeAttributes<UserAttributes> = {
-    name: {
-      type: DataTypes.STRING
-    }
+export default (sequelize: Sequelize.Sequelize) => {
+  const attributes: SequelizeAttributes<IUser> = {
+    id: {
+      primaryKey: true,
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4
+    },
+    name: { type: Sequelize.STRING, allowNull: false }
   }
-
-  const User = sequelize.define<{}, UserAttributes>('User', attributes)
-
-  return User
+  return sequelize.define<UserInstance, IUser>('User', attributes)
 }

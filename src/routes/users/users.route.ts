@@ -1,11 +1,11 @@
 import {Request,Response, Router} from 'express'
-import userService from './users.service'
-import {UserAttributes} from '../../interfaces/IUser'
+import userService from '../../services/users.service'
 const router = Router();
 
-router.post('/merhaba', async (req:Request, res:Response)=>{
-    const mockData:UserAttributes = {id:3,name:"Omer"}
-    await userService.createUser(mockData)
+router.post('/create', async (req:Request, res:Response)=>{
+    const createUser = await userService.createUser(req.body)
+    if (!createUser.status) return res.status(400).send(createUser);
+    return res.status(201).send(createUser);
 })
 
 export default router;

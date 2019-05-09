@@ -4,53 +4,32 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts"
+    "dev": "cross-env NODE_ENV=development nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
-    "@types/cors": "^2.8.4",
-    "@types/dotenv": "^6.1.0",
-    "@types/ejs": "^2.6.0",
-    "@types/express": "^4.11.1",
-    "@types/jest": "^23.3.9",
-    "@types/jsonwebtoken": "^8.3.0",
-    "@types/mongoose": "^5.2.13",
-    "@types/sequelize": "^4.27.24",
-    "@types/supertest": "^2.0.6",
-    "axios": "^0.18.0",
+    "@types/node": "^12.0.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "cross-env": "^5.2.0",
+    "crypto": "^1.0.1",
     "dotenv": "^6.0.0",
-    "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "fs-extra": "^7.0.1",
-    "jest": "^23.6.0",
-    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.13",
     "pg": "^7.10.0",
     "sequelize": "^4.38.0",
-    "supertest": "^3.3.0",
-    "ts-jest": "^23.10.4",
-    "tslint-clean-code": "^0.2.9"
+    "tsd": "^0.7.2"
   },
   "devDependencies": {
-    "@types/fs-extra": "^5.0.4",
+    "@types/cors": "^2.8.4",
+    "@types/dotenv": "^6.1.0",
+    "@types/express": "^4.11.1",
+    "@types/mongoose": "^5.2.13",
+    "@types/sequelize": "^4.27.24",
     "nodemon": "^1.18.4",
+    "tslint-clean-code": "^0.2.9",
     "typescript": "^3.1.6"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mksglu/shorten-url.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mksglu/shorten-url/issues"
-  },
-  "homepage": "https://github.com/mksglu/shorten-url#readme"
+  }
 }

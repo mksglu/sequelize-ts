@@ -1,22 +1,21 @@
-import { UserFactory } from '../models/User'
-import { IDB } from '../interfaces'
+import UserFactory from '../models/User'
 import * as Sequelize from 'sequelize'
-const sequelize = new Sequelize.Sequelize(
-  'postgres://postgres:changeme@localhost:5432/shortenurl'
-)
-const db: IDB = {
+import { CONNECTION_URI } from '../config'
+
+const sequelize = new Sequelize(CONNECTION_URI, { operatorsAliases: false })
+
+const db = {
   sequelize,
   Sequelize,
-  User: UserFactory(sequelize, Sequelize)
+  User: UserFactory(sequelize)
 }
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db)
+Object.values(db).forEach((model: any) => {
+  if (model.associate) {
+    model.associate(db)
   }
 })
 
 db.sequelize.sync()
-
 
 export default db
