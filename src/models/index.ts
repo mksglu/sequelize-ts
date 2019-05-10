@@ -1,20 +1,9 @@
 import UserFactory from '../models/User'
 import * as Sequelize from 'sequelize'
-import * as dotenv from 'dotenv'
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../../config/database.js')[env];
 
-dotenv.config()
-import {
-  PRODUCTION_DATABASE,
-  PRODUCTION_DATABASE_USER,
-  PRODUCTION_DATABASE_PASSWORD
-} from '../config'
-
-const sequelize = new Sequelize(
-  PRODUCTION_DATABASE,
-  PRODUCTION_DATABASE_USER,
-  PRODUCTION_DATABASE_PASSWORD,
-  { dialect: 'postgres' }
-)
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 const db = {
   sequelize,
