@@ -3,9 +3,18 @@ import * as Sequelize from 'sequelize'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
-import { CONNECTION_URI } from '../config'
+import {
+  PRODUCTION_DATABASE,
+  PRODUCTION_DATABASE_USER,
+  PRODUCTION_DATABASE_PASSWORD
+} from '../config'
 
-const sequelize = new Sequelize(CONNECTION_URI, { operatorsAliases: false })
+const sequelize = new Sequelize(
+  PRODUCTION_DATABASE,
+  PRODUCTION_DATABASE_USER,
+  PRODUCTION_DATABASE_PASSWORD,
+  { dialect: 'postgres' }
+)
 
 const db = {
   sequelize,
