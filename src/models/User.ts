@@ -15,7 +15,7 @@ export default (sequelize: Sequelize.Sequelize) => {
   const User = sequelize.define<UserInstance, IUser>('User', attributes)
 
   User.associate = models => {
-    User.hasMany(models.Post, { foreignKey: 'userId' })
+    User.hasMany(models.Post, {foreignKey: 'authorId'})
   }
 
   return User

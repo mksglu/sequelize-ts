@@ -18,11 +18,9 @@ const getPosts = async (req: IPost): Promise<any> => {
     const mockId = "b64ffd42-3d76-490a-95f2-ba608dc04e54"
     const data = await db.Post.findAll({
         include:[{
-            model: db.User
-        }],
-        where:{
-            userId: mockId
-        }
+            model: db.User,
+            as: 'author'
+        }]
     })
     return { status: true, data }
   } catch (error) {

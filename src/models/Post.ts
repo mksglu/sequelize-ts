@@ -15,7 +15,7 @@ export default (sequelize: Sequelize.Sequelize) => {
   const Post = sequelize.define<UserInstance, IPost>('Post', attributes)
 
   Post.associate = models => {
-    Post.belongsTo(models.User, { foreignKey: 'userId' })
+    Post.belongsTo(models.User, {as: 'author', foreignKey: 'authorId'})
   }
 
   return Post
