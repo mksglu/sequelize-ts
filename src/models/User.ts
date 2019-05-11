@@ -12,5 +12,11 @@ export default (sequelize: Sequelize.Sequelize) => {
     },
     name: { type: Sequelize.STRING, allowNull: false }
   }
-  return sequelize.define<UserInstance, IUser>('User', attributes)
+  const User = sequelize.define<UserInstance, IUser>('User', attributes)
+
+  User.associate = models => {
+    User.hasMany(models.Post, { foreignKey: 'userId' })
+  }
+
+  return User
 }
