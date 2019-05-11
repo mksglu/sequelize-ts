@@ -4,7 +4,9 @@ import * as Sequelize from 'sequelize'
 const env = process.env.NODE_ENV || 'development'
 const config = require(__dirname + '/../../config/database.js')[env]
 
-const sequelize = new Sequelize(
+const _Sequelize: any = Sequelize;
+
+const sequelize = new _Sequelize(
   config.database,
   config.username,
   config.password,
@@ -20,9 +22,9 @@ const db = {
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
-    db[modelName].associate(db);
+    db[modelName].associate(db)
   }
-});
+})
 
 db.sequelize.sync()
 
