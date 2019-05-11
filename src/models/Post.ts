@@ -10,12 +10,15 @@ export default (sequelize: Sequelize.Sequelize) => {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4
     },
-    body: { type: Sequelize.STRING, allowNull: false }
+    body: {
+      type: Sequelize.STRING,
+      allowNull: false
+    }
   }
   const Post = sequelize.define<UserInstance, IPost>('Post', attributes)
 
   Post.associate = models => {
-    Post.belongsTo(models.User, {as: 'author', foreignKey: 'authorId'})
+    Post.belongsTo(models.User, { as: 'author', foreignKey: 'authorId' })
   }
 
   return Post
