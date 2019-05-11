@@ -1,7 +1,6 @@
 import * as Sequelize from 'sequelize'
 import { IUser } from '../interfaces/IUser'
 import { SequelizeAttributes } from '../interfaces/ISequelizeAttributes'
-type UserInstance = Sequelize.Instance<IUser> & IUser
 
 export default (sequelize: Sequelize.Sequelize) => {
   const attributes: SequelizeAttributes<IUser> = {
@@ -12,10 +11,15 @@ export default (sequelize: Sequelize.Sequelize) => {
     },
     name: { type: Sequelize.STRING, allowNull: false }
   }
-  const User = sequelize.define<UserInstance, IUser>('User', attributes)
 
-  User.associate = models => {
-    User.hasMany(models.Post, {foreignKey: 'authorId'})
+  type MyModelStatic = typeof Sequelize.Model & {
+    new (values?: object, options?: Sequelize.BuildOptions): IUser
+  }
+
+  const User: any = <MyModelStatic>sequelize.define('User', attributes)
+
+  User.associate = (models: any) => {
+    User.hasMany(models.Post, { foreignKey: 'authorId' })
   }
 
   return User

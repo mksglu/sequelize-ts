@@ -1,7 +1,6 @@
 import * as Sequelize from 'sequelize'
 import { IPost } from '../interfaces/IPost'
 import { SequelizeAttributes } from '../interfaces/ISequelizeAttributes'
-type UserInstance = Sequelize.Instance<IPost> & IPost
 
 export default (sequelize: Sequelize.Sequelize) => {
   const attributes: SequelizeAttributes<IPost> = {
@@ -15,9 +14,14 @@ export default (sequelize: Sequelize.Sequelize) => {
       allowNull: false
     }
   }
-  const Post = sequelize.define<UserInstance, IPost>('Post', attributes)
 
-  Post.associate = models => {
+  type MyModelStatic = typeof Sequelize.Model & {
+    new (values?: object, options?: Sequelize.BuildOptions): IPost;
+  }
+
+  const Post:any = <MyModelStatic>sequelize.define('Post', attributes)
+
+  Post.associate = (models:any) => {
     Post.belongsTo(models.User, { as: 'author', foreignKey: 'authorId' })
   }
 
