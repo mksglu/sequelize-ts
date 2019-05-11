@@ -6,7 +6,7 @@ const config = require(__dirname + '/../../config/database.js')[env]
 
 const _Sequelize: any = Sequelize;
 
-const sequelize = new _Sequelize(
+export const sequelize = new _Sequelize(
   config.database,
   config.username,
   config.password,
